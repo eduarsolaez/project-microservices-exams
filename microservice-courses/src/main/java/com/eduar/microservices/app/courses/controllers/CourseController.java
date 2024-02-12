@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("api/courses")
@@ -61,7 +62,22 @@ public class CourseController extends CommonController<CourseEntity, ICourseServ
 
     @GetMapping("student/{id}")
     public ResponseEntity<?> searchByStudentId(@PathVariable Long id){
-        return ResponseEntity.ok(service.findCourseByStudentId(id));
+        CourseEntity course = this.service.findCourseByStudentId(id);
+
+        if (course != null){
+            List<Long> examsId = (List<Long>) this.service.findExamsIdWithAnswersByStudent(id);
+
+            List<ExamEntity> exams = course.getExams().stream().map(exam -> {
+              if (examsId.contains(exam.getId())){
+                  exam.setAnswered(true);
+              }
+              return exam;
+            }).toList();
+
+            course.setExams(exams);
+        }
+
+        return ResponseEntity.ok(course);
     }
 
     @PutMapping("delete-exam/{id}")

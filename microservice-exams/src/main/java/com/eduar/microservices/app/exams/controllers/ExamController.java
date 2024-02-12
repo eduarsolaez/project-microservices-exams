@@ -3,7 +3,6 @@ package com.eduar.microservices.app.exams.controllers;
 import com.eduar.microservices.commons.exams.entities.ExamEntity;
 import com.eduar.microservices.app.exams.services.IExamService;
 import com.eduar.microservices.commons.controllers.CommonController;
-import jakarta.persistence.GeneratedValue;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

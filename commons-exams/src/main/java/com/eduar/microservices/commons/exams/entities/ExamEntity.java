@@ -20,6 +20,9 @@ public class ExamEntity {
     @NotEmpty
     private String name;
 
+    @Transient
+    private boolean answered;
+
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "create_at")
     private Date createAt;
@@ -43,6 +46,14 @@ public class ExamEntity {
     @PrePersist
     public void prePersist(){
         this.createAt = new Date();
+    }
+
+    public boolean isAnswered() {
+        return answered;
+    }
+
+    public void setAnswered(boolean answered) {
+        this.answered = answered;
     }
 
     public SubjectEntity getSubject() {

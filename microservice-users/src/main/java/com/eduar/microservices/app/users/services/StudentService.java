@@ -3,6 +3,7 @@ package com.eduar.microservices.app.users.services;
 import com.eduar.microservices.commons.students.entity.StudentEntity;
 import com.eduar.microservices.app.users.repositories.StudentRepository;
 import com.eduar.microservices.commons.services.CommonService;
+import jakarta.persistence.Lob;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
