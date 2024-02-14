@@ -3,9 +3,19 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "exams": {
+    "exams-angular": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "standalone": false
+        },
+        "@schematics/angular:directive": {
+          "standalone": false
+        },
+        "@schematics/angular:pipe": {
+          "standalone": false
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -13,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/exams",
+            "outputPath": "dist/exams-angular",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -62,10 +72,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "exams:build:production"
+              "buildTarget": "exams-angular:build:production"
             },
             "development": {
-              "buildTarget": "exams:build:development"
+              "buildTarget": "exams-angular:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -73,7 +83,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "exams:build"
+            "buildTarget": "exams-angular:build"
           }
         },
         "test": {
@@ -96,8 +106,5 @@
         }
       }
     }
-  },
-  "cli": {
-    "analytics": "219b1025-ccce-46ea-bbf1-fcd2f5c0a832"
   }
 }
