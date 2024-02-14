@@ -3,14 +3,24 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { StudentsComponent } from './components/students/students.component';
+import { CoursesComponent } from './components/courses/courses.component';
+import { ExamsComponent } from './components/exams/exams.component';
+import {LayoutModule} from "./layout/layout.module";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    StudentsComponent,
+    CoursesComponent,
+    ExamsComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    LayoutModule,
+    HttpClientModule
   ],
   providers: [
     provideClientHydration()
