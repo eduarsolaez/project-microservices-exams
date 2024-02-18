@@ -19,6 +19,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("api/students")
+//@CrossOrigin({"http://localhost:4200/"})
 public class StudentController extends CommonController<StudentEntity, IStudentService> {
 
     @PutMapping("{id}")
