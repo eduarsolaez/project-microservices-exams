@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {StudentService} from "../../services/student.service";
 import {Student} from "../../models/student";
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-students',
@@ -26,13 +27,27 @@ export class StudentsComponent implements OnInit{
   }
 
   public delete(student: Student): void{
-    if (confirm(`Estas seguro que quieres eliminar a ${student.name} ?`)){
-      this.service.delete(student.id).subscribe(() => {
-        this.list();
-        alert(`Estudiante ${student.name} ha sido eliminado correctamente`)
-      });
-    }
-
+    Swal.fire({
+      title: `Estas seguro de eliminar a ${student.name} ?`,
+      text: "No podras revertir esta accion!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, eliminar!",
+      cancelButtonText: "Cancelar"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.service.delete(student.id).subscribe(() => {
+          this.list();
+        });
+        Swal.fire({
+          title: "Eliminado!",
+          text: "El estudiante ha sido eliminado correctamente",
+          icon: "success"
+        });
+      }
+    });
   }
 
 }

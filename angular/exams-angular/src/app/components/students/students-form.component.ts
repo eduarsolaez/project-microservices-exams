@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Student} from "../../models/student";
 import {StudentService} from "../../services/student.service";
 import {ActivatedRoute, Route, Router} from "@angular/router";
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-students-form',
@@ -39,7 +40,11 @@ export class StudentsFormComponent implements OnInit{
   public create(): void {
     this.service.create(this.student).subscribe(s => {
       console.log(s);
-      alert(`Estudiante ${s.name} ha sido creado correctamente`);
+      Swal.fire({
+        title: "Creado correctamente!",
+        text: `Estudiante ${s.name} ha sido creado correctamente`,
+        icon: "success"
+      });
       this.router.navigate(['/students']);
     }, error1 => {
       if (error1.status === 400){
@@ -52,7 +57,11 @@ export class StudentsFormComponent implements OnInit{
   public edit(): void{
     this.service.update(this.student).subscribe(s => {
       console.log(s);
-      alert(`Estudiante ${s.name} ha sido actualizado correctamente`);
+      Swal.fire({
+        title: "Editado correctamente!",
+        text: `Estudiante ${s.name} ha sido editado correctamente`,
+        icon: "success"
+      });
       this.router.navigate(['/students']);
     }, error1 => {
       if (error1.status === 400){
