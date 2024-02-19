@@ -10,6 +10,9 @@ import {LayoutModule} from "./layout/layout.module";
 import {HttpClientModule, provideHttpClient, withFetch} from "@angular/common/http";
 import { StudentsFormComponent } from './components/students/students-form.component';
 import {FormsModule} from "@angular/forms";
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -24,11 +27,14 @@ import {FormsModule} from "@angular/forms";
     AppRoutingModule,
     LayoutModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    MatPaginatorModule,
+    BrowserAnimationsModule
   ],
   providers: [
     provideClientHydration(),
-    provideHttpClient(withFetch())
+    provideHttpClient(withFetch()),
+    provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
 })

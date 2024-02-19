@@ -33,6 +33,14 @@
       </tr>
       </tbody>
     </table>
+    <mat-paginator [length]="length"
+                   [pageSize]="pageSize"
+                   [pageSizeOptions]="pageSizeOptions"
+                   (page)="pageable($event)"
+                   showFirstLastButtons=""
+                   class="float-end mx-2"
+                   aria-label="Select page">
+    </mat-paginator>
   </div>
 </div>
 

@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {StudentService} from "../../services/student.service";
 import {Student} from "../../models/student";
 import Swal from 'sweetalert2'
+import {MatPaginator, PageEvent} from "@angular/material/paginator";
 
 @Component({
   selector: 'app-students',
@@ -14,15 +15,33 @@ export class StudentsComponent implements OnInit{
 
   students: Student[];
 
+  length = 0;
+  pageSize = 5;
+  actualPage= 0;
+  pageSizeOptions : number[] = [5, 10, 25, 100];
+
   constructor(private service: StudentService) {}
 
   ngOnInit() {
-    this.list();
+    this.listPageable();
   }
 
   public list(): void{
     this.service.list().subscribe(s => {
       this.students = s;
+    });
+  }
+
+  public pageable(event: PageEvent): void {
+    this.actualPage = event.pageIndex;
+    this.pageSize = event.pageSize;
+    this.listPageable();
+  }
+
+  public listPageable(): void{
+    this.service.listPages(this.actualPage.toString(), this.pageSize.toString()).subscribe(s => {
+      this.students = s.content as Student[];
+      this.length = s.totalElements as number;
     });
   }
 
@@ -39,7 +58,7 @@ export class StudentsComponent implements OnInit{
     }).then((result) => {
       if (result.isConfirmed) {
         this.service.delete(student.id).subscribe(() => {
-          this.list();
+          this.listPageable();
         });
         Swal.fire({
           title: "Eliminado!",
