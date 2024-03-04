@@ -4,10 +4,10 @@
   <div class="card-body">
 
     <button class="btn btn-primary my-2" routerLink="/students/form">Crear</button>
-    <div class="alert alert-info" *ngIf="students?.length == 0">
+    <div class="alert alert-info" *ngIf="lists?.length == 0">
       No hay estudiantes registrados en el sistema.
     </div>
-    <table class="table table-hover table-striped" *ngIf="students?.length > 0">
+    <table class="table table-hover table-striped" *ngIf="lists?.length > 0">
       <thead>
       <tr>
         <th>id</th>
@@ -20,7 +20,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let student of students">
+      <tr *ngFor="let student of lists">
         <td>{{student.id}}</td>
         <td>{{student.name | uppercase}}</td>
         <td>{{student.lastname | uppercase}}</td>

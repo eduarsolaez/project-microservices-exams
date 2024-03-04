@@ -1,4 +1,6 @@
-export class Student {
+import {Generic} from "./generic";
+
+export class Student implements Generic{
 
   id: number;
   name: string;

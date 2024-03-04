@@ -1,7 +1,8 @@
 import {Student} from "./student";
 import {Exam} from "./exam";
+import {Generic} from "./generic";
 
-export class Course {
+export class Course implements Generic{
 
   id: number;
   name: string;
