@@ -13,6 +13,8 @@ import {FormsModule} from "@angular/forms";
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {NgOptimizedImage} from "@angular/common";
+import { CourseFormComponent } from './components/courses/course-form.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     StudentsComponent,
     CoursesComponent,
     ExamsComponent,
-    StudentsFormComponent
+    StudentsFormComponent,
+    CourseFormComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +32,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     HttpClientModule,
     FormsModule,
     MatPaginatorModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgOptimizedImage
   ],
   providers: [
     provideClientHydration(),
